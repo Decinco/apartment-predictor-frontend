@@ -26,7 +26,7 @@ export default function ApartmentsView() {
     }, [])
 
     function getApartmentFromId(id: string | undefined) {
-        return apartments?.filter(apartment => apartment.id == id)[0]
+        return apartments?.find(apartment => apartment.id === id)
     }
 
     function getInterfaceContent() {

@@ -18,8 +18,8 @@ export default function ApartmentDetail({ apartment }: { apartment: Apartment })
     
     return (<>
         <button onClick={() => dispatch({type: "list_apt"})}>Return to List</button>
-        {interfaceStatus.mode == "Editing" && apartment && <ApartmentDetailEdit {...apartmentData} />}
-        {interfaceStatus.mode == "Viewing" && apartment && <ApartmentDetailView {...apartmentData} />}
+        {interfaceStatus.mode == "Editing" && <ApartmentDetailEdit {...apartmentData} />}
+        {interfaceStatus.mode == "Viewing" && <ApartmentDetailView {...apartmentData} />}
     </>)
 }
 
@@ -36,8 +36,6 @@ function ApartmentDetailView(apartment: Apartment) {
 }
 
 function ApartmentDetailEdit(apartment: Apartment) {
-    
-
     return (
         <>
             <p>Name: {apartment.name}</p>
