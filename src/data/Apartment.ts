@@ -1,4 +1,12 @@
-type ApartmentFurnishingStatus = "Unfurnished" | "Partially Furnished" | "Fully Furnished"
+import { enumFromValues } from "../utils";
+
+export const possibleFurnishingStates = enumFromValues([
+    "Unfurnished",
+    "Partially Furnished",
+    "Fully Furnished",
+]);
+
+type ApartmentFurnishingStatus = typeof possibleFurnishingStates
 
 export interface Apartment {
     id: string

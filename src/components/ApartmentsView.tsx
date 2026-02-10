@@ -1,6 +1,6 @@
 import { useEffect, useState} from "react"
 import ApartmentDetail from "./ApartmentDetail"
-import { type Apartment } from "../data/apartments"
+import { type Apartment } from "../data/Apartment"
 import axios from "axios"
 import { separateNumbers } from "../utils"
 import { useInterface, useInterfaceDispatch } from "./InterfaceStatusProvider"
