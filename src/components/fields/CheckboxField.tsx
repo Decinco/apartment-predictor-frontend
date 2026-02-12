@@ -8,15 +8,15 @@ interface CheckboxFieldProps {
 
 export default function CheckboxField({ label, checked, onChange }: CheckboxFieldProps) {
     return (
-        <div>
-            <label>
-                <input
+        <div className="flex flex-row gap-4 items-start md:items-center">
+            <label className="text-xl text-yellow-600 font-bold capitalize">
+                {label}
+            </label>
+            <input className="my-2 w-6 h-6 accent-yellow-600 bg-yellow-950 border-yellow-700 rounded cursor-pointer"
                     type="checkbox"
                     checked={checked}
                     onChange={(e) => onChange(e.target.checked)}
                 />
-                {label}
-            </label>
         </div>
     )
 }

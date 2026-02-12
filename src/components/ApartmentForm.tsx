@@ -35,24 +35,27 @@ export default function ApartmentForm({ apartment, onSubmit, onReturn }: { apart
     }
 
     return (
-        <form onSubmit={(e) => e.preventDefault()}>
-            <h3>Edit Apartment</h3>
-            {typedKeys(formData).map((field) => (
-                <FormField
-                    key={field}
-                    field={field}
-                    apartment={formData}
-                    onChange={handleFieldChange}
-                />
-            ))}
-            <div style={{ marginTop: "1rem" }}>
-                <button type="button" disabled={isSubmitting} onClick={handleCancel}>
-                    Cancel
-                </button>
-                {" "}
-                <button type="button" disabled={isSubmitting} onClick={handleSubmit}>
-                    {isSubmitting ? "Saving..." : "Submit"}
-                </button>
+        <form className="flex flex-col items-center text-white antialiased self-center" onSubmit={(e) => e.preventDefault()}>
+            <div className="px-5">
+                <h3 className="text-5xl font-bold italic text-yellow-500 pt-5">Edit Apartment</h3>
+                {typedKeys(formData).map((field) => (
+                    <div className="py-2">
+                        <FormField
+                            key={field}
+                            field={field}
+                            apartment={formData}
+                            onChange={handleFieldChange}
+                        />
+                    </div>
+                ))}
+                <div className="flex flex-row gap-4 mt-4">
+                    <button className="inset-ring-4 rounded-lg hover:cursor-pointer py-2 px-6 inset-ring-yellow-800 font-bold hover:inset-ring-0 hover:bg-linear-to-br hover:from-yellow-800 hover:to-yellow-600" type="button" disabled={isSubmitting} onClick={handleSubmit}>
+                        {isSubmitting ? "Saving..." : "Submit"}
+                    </button>
+                    <button className="inset-ring-4 rounded-lg hover:cursor-pointer py-2 px-6 inset-ring-red-800 font-bold hover:inset-ring-0 hover:bg-linear-to-br hover:from-red-800 hover:to-red-600" type="button" disabled={isSubmitting} onClick={handleCancel}>
+                        Cancel
+                    </button>
+                </div>
             </div>
         </form>
     )

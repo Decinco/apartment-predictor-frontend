@@ -27,6 +27,12 @@ export default function ApartmentViewer() {
     }
 
     const handleView = (id?: string) => {
+        // Special case during creation
+        if (!id && !selectedApartmentId) {
+            setViewMode("list")
+            return
+        }
+
         id && setSelectedApartmentId(id) // Going BACK to view from edit won't change the apartment we're seeing
         setViewMode("view")
     }

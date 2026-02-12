@@ -1,4 +1,3 @@
-import './App.css'
 import ApartmentViewer from './components/ApartmentViewer'
 
 function App() {
