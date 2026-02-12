@@ -6,7 +6,7 @@ import { separateNumbers } from "../utils"
 
 export default function ApartmentDetail({ apartment, onStartEdit, onReturn, onDelete }: { apartment: Apartment, onStartEdit: () => void, onReturn: () => void, onDelete: (id: string, name: string) => void }) {
     return (
-        <div className="flex flex-col items-center text-white antialiased self-center">
+        <div className="flex flex-col items-center text-white antialiased self-center pb-5">
             <div className="px-5">
                 <h3 className="text-5xl font-bold italic text-yellow-500 pt-5">{apartment.name}</h3>
                 <p className="text-3xl font-medium text-left self-baseline pb-5">{separateNumbers(apartment.price)} €</p>

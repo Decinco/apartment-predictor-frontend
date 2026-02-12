@@ -69,15 +69,15 @@ export default function ApartmentViewer() {
             )
         }
 
-        if (!apartments.list || apartments.list.length === 0) {
-            return <p>No apartments found</p>
+        if (!apartments.list) {
+            return <p>Couldn't load Apartments</p>
         }
 
         let apartment
 
         switch (viewMode) {
             case "list":
-                return apartments ? <ApartmentList apartments={apartments.list} onView={handleView} onCreate={handleCreation} /> : <p>Loading apartments...</p>
+                return <ApartmentList apartments={apartments.list} onView={handleView} onCreate={handleCreation} />
             case "view":
                 apartment = getApartmentFromId(selectedApartmentId)
                 if (!apartment) return <p>Apartment not found</p>

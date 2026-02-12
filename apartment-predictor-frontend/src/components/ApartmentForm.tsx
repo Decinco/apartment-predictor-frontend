@@ -35,7 +35,7 @@ export default function ApartmentForm({ apartment, onSubmit, onReturn }: { apart
     }
 
     return (
-        <form className="flex flex-col items-center text-white antialiased self-center" onSubmit={(e) => e.preventDefault()}>
+        <form className="flex flex-col items-center text-white antialiased self-center pb-5" onSubmit={(e) => e.preventDefault()}>
             <div className="px-5">
                 <h3 className="text-5xl font-bold italic text-yellow-500 pt-5">Edit Apartment</h3>
                 {typedKeys(formData).map((field) => (
