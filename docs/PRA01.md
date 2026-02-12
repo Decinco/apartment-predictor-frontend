@@ -1,5 +1,7 @@
 # Apartment Predictor Technical Documentation
 
+[See on GitHub](https://github.com/Decinco/apartment-predictor-frontend/tree/main)
+
 ## Technologies
 
 - Language: Typescript
