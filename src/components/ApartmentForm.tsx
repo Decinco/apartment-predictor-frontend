@@ -1,25 +1,14 @@
-// Solution #6: Split Components - ApartmentForm
-
 import { useState } from "react"
 import type { Apartment } from "../data/Apartment"
-import { useInterfaceDispatch } from "./InterfaceStatusProvider"
 import { typedKeys } from "../utils"
 import TextField from "./fields/TextField"
 import CheckboxField from "./fields/CheckboxField"
 import SelectField from "./fields/SelectField"
 import { furnishingStatusValues, isFurnishingStatus } from "../data/Apartment"
 
-interface ApartmentFormProps {
-    apartment: Apartment
-    onSubmit: (apartment: Apartment) => Promise<void>
-}
-
-export default function ApartmentForm({ apartment, onSubmit }: ApartmentFormProps) {
+export default function ApartmentForm({ apartment, onSubmit, onReturn }: { apartment: Apartment, onSubmit: (apartment: Apartment) => Promise<void>, onReturn: (id?: string) => void }) {
     const [formData, setFormData] = useState<Apartment>(apartment)
     const [isSubmitting, setIsSubmitting] = useState(false)
-    const dispatch = useInterfaceDispatch()
-
-    if (!dispatch) return null
 
     const handleFieldChange = (field: keyof Apartment, value: any) => {
         setFormData({
@@ -32,7 +21,7 @@ export default function ApartmentForm({ apartment, onSubmit }: ApartmentFormProp
         setIsSubmitting(true)
         try {
             await onSubmit(formData)
-            dispatch({ type: "view_apt", selectedApartment: apartment.id })
+            onReturn()
         } catch (err) {
             console.error("Error submitting form:", err)
             alert("Failed to update apartment. Please try again.")
@@ -42,7 +31,7 @@ export default function ApartmentForm({ apartment, onSubmit }: ApartmentFormProp
     }
 
     const handleCancel = () => {
-        dispatch({ type: "view_apt", selectedApartment: apartment.id })
+        onReturn()
     }
 
     return (

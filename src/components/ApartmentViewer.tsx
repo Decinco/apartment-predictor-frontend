@@ -1,25 +1,37 @@
 import { type Apartment } from "../data/Apartment"
-import { useInterface } from "./InterfaceStatusProvider"
 import { useApartments } from "../hooks/useApartments"
 import ApartmentList from "./ApartmentList"
 import ApartmentDetail from "./ApartmentDetail"
 import ApartmentForm from "./ApartmentForm"
+import { useState } from "react"
 
+type ViewMode = "list" | "view" | "edit"
 
 export default function ApartmentViewer() {
-    const interfaceStatus = useInterface()
     const apartments = useApartments()
+    const [viewMode, setViewMode] = useState<ViewMode>("list")
+    const [selectedApartmentId, setSelectedApartmentId] = useState<string | null>(null)
 
-    const onSubmit = async (updatedApartment: Apartment) => {
-        try {
-            await apartments.updateApartmentData(updatedApartment)
-            console.log("Apartment successfully updated")
-        } catch (err) {
-            console.error("Failed to submit apartment update:", err)
-        }
+    const handleSubmit = async (updatedApartment: Apartment) => {
+        await apartments.updateApartmentData(updatedApartment)
+        setViewMode("view")
     }
 
-    function getApartmentFromId(id: string | undefined) {
+    const handleView = (id?: string) => {
+        id && setSelectedApartmentId(id) // Going BACK to view from edit won't change the apartment we're seeing
+        setViewMode("view")
+    }
+
+    const handleEdit = () => {
+        setViewMode("edit")
+    }
+
+    const handleBackToList = () => {
+        setViewMode("list")
+        setSelectedApartmentId(null)
+    }
+
+    function getApartmentFromId(id: string | null) {
         return apartments.list?.find(apartment => apartment.id === id)
     }
 
@@ -43,19 +55,19 @@ export default function ApartmentViewer() {
 
         let apartment
 
-        switch (interfaceStatus.mode) {
-            case "Listing":
-                return apartments ? <ApartmentList apartments={apartments.list}/> : <p>Loading apartments...</p>
-            case "Editing":
-                apartment = getApartmentFromId(interfaceStatus.apartmentId)
+        switch (viewMode) {
+            case "list":
+                return apartments ? <ApartmentList apartments={apartments.list} onView={handleView}/> : <p>Loading apartments...</p>
+            case "edit":
+                apartment = getApartmentFromId(selectedApartmentId)
                 if (!apartment) return <p>Apartment not found</p>
 
-                return <ApartmentDetail apartment={apartment}/>
-            case "Viewing":
-                apartment = getApartmentFromId(interfaceStatus.apartmentId)
+                return <ApartmentDetail apartment={apartment} onStartEdit={handleEdit} onReturn={handleBackToList}/>
+            case "view":
+                apartment = getApartmentFromId(selectedApartmentId)
                 if (!apartment) return <p>Apartment not found</p>
 
-                return <ApartmentForm apartment={apartment} onSubmit={onSubmit}/>
+                return <ApartmentForm apartment={apartment} onSubmit={handleSubmit} onReturn={handleView}/>
             default:
                 return <p>...what?</p>
         }

@@ -1,29 +1,20 @@
 import type { Apartment } from "../data/Apartment"
 import { separateNumbers } from "../utils"
-import { useInterfaceDispatch } from "./InterfaceStatusProvider"
 
-export default function ApartmentList({ apartments }: { apartments: Apartment[] }) {
-    const dispatch = useInterfaceDispatch()
-
-    if (!dispatch) return null
-
+export default function ApartmentList({ apartments, onView }: { apartments: Apartment[],  onView: (id?: string) => void }) {
     return (
         <div>
             <h2>Apartments</h2>
             <ul>
                 {apartments.map(apartment => (
-                    <ApartmentListItem key={apartment.id} apartment={apartment} />
+                    <ApartmentListItem key={apartment.id} apartment={apartment} onView={onView} />
                 ))}
             </ul>
         </div>
     )
 }
 
-function ApartmentListItem({ apartment }: { apartment: Apartment }) {
-    const dispatch = useInterfaceDispatch()
-
-    if (!dispatch) return null
-
+function ApartmentListItem({ apartment, onView }: { apartment: Apartment, onView: (id?: string) => void }) {
     return (
         <li style={{ listStyle: "none" }}>
             <div>
@@ -37,7 +28,7 @@ function ApartmentListItem({ apartment }: { apartment: Apartment }) {
                 {" - "}
                 {separateNumbers(apartment.price)} €
                 {" "}
-                <button onClick={() => dispatch({ type: "view_apt", selectedApartment: apartment.id })}>
+                <button onClick={() => onView(apartment.id)}>
                     View
                 </button>
             </div>

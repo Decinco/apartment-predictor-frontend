@@ -1,12 +1,9 @@
 import type { Apartment } from "../data/Apartment"
-import { useInterfaceDispatch } from "./InterfaceStatusProvider"
 import { separateNumbers } from "../utils"
 
-export default function ApartmentDetail({ apartment }: { apartment: Apartment }) {
-    const dispatch = useInterfaceDispatch()
 
-    if (!dispatch) return null
 
+export default function ApartmentDetail({ apartment, onStartEdit, onReturn }: { apartment: Apartment, onStartEdit: () => void, onReturn: () => void}) {
     return (
         <div>
             <h3>{apartment.name}</h3>
@@ -25,11 +22,11 @@ export default function ApartmentDetail({ apartment }: { apartment: Apartment })
                 {apartment.parking && <p>✓ Parking</p>}
             </div>
             
-            <button onClick={() => dispatch({ type: "list_apt" })}>
+            <button onClick={onReturn}>
                 Return to List
             </button>
             {" "}
-            <button onClick={() => dispatch({ type: "edit_apt" })}>
+            <button onClick={onStartEdit}>
                 Edit
             </button>
         </div>
