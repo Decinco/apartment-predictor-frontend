@@ -1,4 +1,4 @@
-import { type Apartment } from "../data/Apartment"
+import { defaultApartment, type Apartment } from "../data/Apartment"
 import { useApartments } from "../hooks/useApartments"
 import ApartmentList from "./ApartmentList"
 import ApartmentDetail from "./ApartmentDetail"
@@ -13,8 +13,17 @@ export default function ApartmentViewer() {
     const [selectedApartmentId, setSelectedApartmentId] = useState<string | null>(null)
 
     const handleSubmit = async (updatedApartment: Apartment) => {
+        console.log(updatedApartment)
         await apartments.updateApartmentData(updatedApartment)
         setViewMode("view")
+    }
+
+    const handleDeletion = async (deletedApartmentId: string, deletedApartmentName: string) => {
+        const confirmation = confirm("Are you sure you want to delete " + deletedApartmentName + "?")
+        if (confirmation) {
+            await apartments.deleteApartment(deletedApartmentId)
+            setViewMode("list")
+        }
     }
 
     const handleView = (id?: string) => {
@@ -24,6 +33,11 @@ export default function ApartmentViewer() {
 
     const handleEdit = () => {
         setViewMode("edit")
+    }
+
+    const handleCreation = () => {
+        setViewMode("edit")
+        setSelectedApartmentId(null)
     }
 
     const handleBackToList = () => {
@@ -57,17 +71,17 @@ export default function ApartmentViewer() {
 
         switch (viewMode) {
             case "list":
-                return apartments ? <ApartmentList apartments={apartments.list} onView={handleView}/> : <p>Loading apartments...</p>
-            case "edit":
-                apartment = getApartmentFromId(selectedApartmentId)
-                if (!apartment) return <p>Apartment not found</p>
-
-                return <ApartmentDetail apartment={apartment} onStartEdit={handleEdit} onReturn={handleBackToList}/>
+                return apartments ? <ApartmentList apartments={apartments.list} onView={handleView} onCreate={handleCreation} /> : <p>Loading apartments...</p>
             case "view":
                 apartment = getApartmentFromId(selectedApartmentId)
                 if (!apartment) return <p>Apartment not found</p>
 
-                return <ApartmentForm apartment={apartment} onSubmit={handleSubmit} onReturn={handleView}/>
+                return <ApartmentDetail apartment={apartment} onStartEdit={handleEdit} onReturn={handleBackToList} onDelete={handleDeletion} />
+            case "edit":
+                apartment = getApartmentFromId(selectedApartmentId)
+                if (!apartment) apartment = defaultApartment
+
+                return <ApartmentForm apartment={apartment} onSubmit={handleSubmit} onReturn={handleView} />
             default:
                 return <p>...what?</p>
         }

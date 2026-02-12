@@ -1,7 +1,7 @@
 import type { Apartment } from "../data/Apartment"
 import { separateNumbers } from "../utils"
 
-export default function ApartmentList({ apartments, onView }: { apartments: Apartment[],  onView: (id?: string) => void }) {
+export default function ApartmentList({ apartments, onView, onCreate }: { apartments: Apartment[],  onView: (id?: string) => void, onCreate: () => void }) {
     return (
         <div>
             <h2>Apartments</h2>
@@ -10,6 +10,7 @@ export default function ApartmentList({ apartments, onView }: { apartments: Apar
                     <ApartmentListItem key={apartment.id} apartment={apartment} onView={onView} />
                 ))}
             </ul>
+            <button onClick={onCreate}>Create</button>
         </div>
     )
 }

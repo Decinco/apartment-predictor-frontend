@@ -18,11 +18,24 @@ export async function fetchApartments(): Promise<Apartment[]> {
 export async function updateApartment(apartment: Apartment): Promise<Apartment> {
     try {
         const response = await axios.put(
-            `${API_BASE_URL}/apartments/update/${apartment.id}`, 
+            `${API_BASE_URL}/apartments/update`, 
             apartment
         )
         console.log("Apartment updated:", response.data)
         return response.data as Apartment
+    } catch (err) {
+        const errorMessage = axios.isAxiosError(err) ? err.message : "Unknown error"
+        console.error("Error updating apartment:", errorMessage)
+        throw new Error(errorMessage)
+    }
+}
+
+export async function removeApartment(id: string): Promise<void> {
+    try {
+        const response = await axios.delete(
+            `${API_BASE_URL}/apartments/delete/${id}`
+        )
+        console.log("Apartment updated:", response.data)
     } catch (err) {
         const errorMessage = axios.isAxiosError(err) ? err.message : "Unknown error"
         console.error("Error updating apartment:", errorMessage)

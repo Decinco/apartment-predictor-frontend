@@ -16,6 +16,7 @@ export default function TextField({ label, type, value, onChange }: TextFieldPro
                     type={type}
                     value={value}
                     onChange={(e) => onChange(e.target.value)}
+                    disabled={label === "id" || label === "price"}
                 />
             </label>
         </div>

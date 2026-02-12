@@ -9,10 +9,12 @@ export type FurnishingStatusType = typeof FurnishingStatus[keyof typeof Furnishi
 // Helper to get all furnishing status values as an array
 export const furnishingStatusValues = Object.values(FurnishingStatus)
 
-// Type guard to check if a value is a valid furnishing status
 export function isFurnishingStatus(value: unknown): value is FurnishingStatusType {
     return typeof value === 'string' && furnishingStatusValues.includes(value as any)
 }
+
+// Default apartment object for editing
+export const defaultApartment: Apartment = {id: String(Math.floor(Math.random() * 99999)), name: '', area: 0, bedrooms: 0, bathrooms: 0, stories: 0, guestroom: false, basement: false, hotwaterheating: false, airconditioning: false, parking: false, furnishingstatus: FurnishingStatus.UNFURNISHED, price: 0 }
 
 export interface Apartment {
     id: string

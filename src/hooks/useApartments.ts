@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { fetchApartments, updateApartment } from "../api/APIAccess"
+import { fetchApartments, updateApartment, removeApartment } from "../api/APIAccess"
 import type { Apartment } from "../data/Apartment"
 
 interface UseApartmentsReturn {
@@ -8,6 +8,7 @@ interface UseApartmentsReturn {
     error: string | null
     updateApartmentData: (apartment: Apartment) => Promise<void>
     refreshApartments: () => Promise<void>
+    deleteApartment: (id: string) => Promise<void>
 }
 
 export function useApartments(): UseApartmentsReturn {
@@ -48,11 +49,24 @@ export function useApartments(): UseApartmentsReturn {
         await loadApartments()
     }
 
+    const deleteApartment = async (id: string) => {
+        try {
+            await removeApartment(id)
+            // Refresh the list after successful update
+            await loadApartments()
+        } catch (err) {
+            const errorMessage = err instanceof Error ? err.message : "Failed to delete apartment"
+            setError(errorMessage)
+            throw new Error(errorMessage)
+        }
+    }
+
     return {
         list: apartments,
         loading,
         error,
         updateApartmentData,
-        refreshApartments
+        refreshApartments,
+        deleteApartment
     }
 }

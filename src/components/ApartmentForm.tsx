@@ -21,7 +21,7 @@ export default function ApartmentForm({ apartment, onSubmit, onReturn }: { apart
         setIsSubmitting(true)
         try {
             await onSubmit(formData)
-            onReturn()
+            onReturn(formData.id)
         } catch (err) {
             console.error("Error submitting form:", err)
             alert("Failed to update apartment. Please try again.")

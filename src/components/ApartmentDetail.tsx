@@ -3,7 +3,7 @@ import { separateNumbers } from "../utils"
 
 
 
-export default function ApartmentDetail({ apartment, onStartEdit, onReturn }: { apartment: Apartment, onStartEdit: () => void, onReturn: () => void}) {
+export default function ApartmentDetail({ apartment, onStartEdit, onReturn, onDelete }: { apartment: Apartment, onStartEdit: () => void, onReturn: () => void, onDelete: (id: string, name: string) => void}) {
     return (
         <div>
             <h3>{apartment.name}</h3>
@@ -28,6 +28,9 @@ export default function ApartmentDetail({ apartment, onStartEdit, onReturn }: { 
             {" "}
             <button onClick={onStartEdit}>
                 Edit
+            </button>
+            <button onClick={() => onDelete(apartment.id, apartment.name)}>
+                Delete
             </button>
         </div>
     )
