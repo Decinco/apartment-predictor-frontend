@@ -93,3 +93,4 @@ During development, my biggest issue was finding a structure for the program tha
 - **More scalable UI Elements**: Currently, the UI's styles and icons are hardcoded, which makes it harder to scale the app.
 - **Reviews**: Apartments can have reviews, that could be shown and edited through the View page. Neither ends have this feature.
 - **UI animations**: The UI could use with some animations.
+- **Fix workflow**: Currently, the GH Pages deployment workflow doesn't execute successfully.
