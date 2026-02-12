@@ -1,12 +1,12 @@
 import './App.css'
-import ApartmentsView from './components/ApartmentsView'
+import ApartmentViewer from './components/ApartmentViewer'
 import InterfaceStatusProvider from './components/InterfaceStatusProvider'
 
 function App() {
   return (
     <>
       <InterfaceStatusProvider>
-        <ApartmentsView />
+        <ApartmentViewer />
       </InterfaceStatusProvider>
     </>
   )

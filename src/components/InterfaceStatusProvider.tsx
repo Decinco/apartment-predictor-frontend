@@ -1,56 +1,63 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useReducer, type Dispatch } from "react"
 
-export type InterfaceMode = "Listing" | "Viewing" | "Editing"
+export type ViewState =
+    | { mode: "Listing" }
+    | { mode: "Viewing"; apartmentId: string }
+    | { mode: "Editing"; apartmentId: string }
 
-interface InterfaceStatus {
-    mode: InterfaceMode
-    selectedApartment?: string
-}
+export type InterfaceAction =
+    | { type: "list_apt" }
+    | { type: "view_apt"; selectedApartment: string }
+    | { type: "edit_apt"; selectedApartment?: string }
 
-type InterfaceAction = { type: string; selectedApartment?: string }
-
-const InterfaceContext = createContext<InterfaceStatus>({ mode: "Listing" })
-const InterfaceDispatch = createContext<React.Dispatch<any> | null>(null)
+const InterfaceContext = createContext<ViewState>({ mode: "Listing" })
+const InterfaceDispatch = createContext<Dispatch<InterfaceAction> | null>(null)
 
 export function useInterface() {
-  return useContext(InterfaceContext);
+    return useContext(InterfaceContext)
 }
 
 export function useInterfaceDispatch() {
-  return useContext(InterfaceDispatch);
+    return useContext(InterfaceDispatch)
 }
 
-export default function InterfaceStatusProvider({ children }: {children: any}) {
-    const [interfaceStatus, dispatch] = useReducer<InterfaceStatus, any>(interfaceStatusReducer, {mode: "Listing"})
+export default function InterfaceStatusProvider({ children }: { children: React.ReactNode }) {
+    const [viewState, dispatch] = useReducer(interfaceStatusReducer, { mode: "Listing" })
 
     return (
-        <InterfaceContext value={interfaceStatus}>
-            <InterfaceDispatch value={dispatch}>{children}</InterfaceDispatch>
-        </InterfaceContext>
+        <InterfaceContext.Provider value={viewState}>
+            <InterfaceDispatch.Provider value={dispatch}>
+                {children}
+            </InterfaceDispatch.Provider>
+        </InterfaceContext.Provider>
     )
 }
 
-function interfaceStatusReducer (interfaceStatus: InterfaceStatus, action: InterfaceAction): InterfaceStatus {
+function interfaceStatusReducer(state: ViewState, action: InterfaceAction): ViewState {
     switch (action.type) {
-    case "view_apt":
-      return {
-        ...interfaceStatus,
-        mode: "Viewing",
-        selectedApartment: action.selectedApartment
-      };
-    case "edit_apt":
-      return {
-        ...interfaceStatus,
-        mode: "Editing",
-        selectedApartment: action.selectedApartment
-      };
-    case "list_apt":
-      return {
-        ...interfaceStatus,
-        mode: "Listing",
-        selectedApartment: undefined
-      };
-    default: 
-      throw Error("Unknown action: " + action.type);
+        case "view_apt":
+            return {
+                mode: "Viewing",
+                apartmentId: action.selectedApartment
+            }
+        case "edit_apt":
+            if (action.selectedApartment) {
+                return {
+                    mode: "Editing",
+                    apartmentId: action.selectedApartment
+                }
+            }
+            if (state.mode === "Viewing" || state.mode === "Editing") {
+                return {
+                    mode: "Editing",
+                    apartmentId: state.apartmentId
+                }
+            }
+            console.warn("Cannot edit apartment: no apartment selected")
+            return { mode: "Listing" }
+        case "list_apt":
+            return { mode: "Listing" }
+        default:
+            return state
     }
 }

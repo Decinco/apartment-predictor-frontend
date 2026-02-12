@@ -1,12 +1,18 @@
-import { enumFromValues } from "../utils";
+export const FurnishingStatus = {
+    UNFURNISHED: 'Unfurnished',
+    PARTIALLY_FURNISHED: 'Partially Furnished',
+    FULLY_FURNISHED: 'Fully Furnished',
+} as const
 
-export const possibleFurnishingStates = enumFromValues([
-    "Unfurnished",
-    "Partially Furnished",
-    "Fully Furnished",
-]);
+export type FurnishingStatusType = typeof FurnishingStatus[keyof typeof FurnishingStatus]
 
-type ApartmentFurnishingStatus = typeof possibleFurnishingStates
+// Helper to get all furnishing status values as an array
+export const furnishingStatusValues = Object.values(FurnishingStatus)
+
+// Type guard to check if a value is a valid furnishing status
+export function isFurnishingStatus(value: unknown): value is FurnishingStatusType {
+    return typeof value === 'string' && furnishingStatusValues.includes(value as any)
+}
 
 export interface Apartment {
     id: string
@@ -21,5 +27,5 @@ export interface Apartment {
     hotwaterheating?: boolean
     airconditioning?: boolean
     parking?: boolean
-    furnishingstatus: ApartmentFurnishingStatus
+    furnishingstatus: FurnishingStatusType
 }
