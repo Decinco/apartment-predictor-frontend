@@ -1,12 +1,12 @@
-import { createContext } from "react";
-import type { TailwindColor } from "./TailwindColor";
+import type { TailwindColor } from "./TailwindColor"
 
 type Gradient = {
     gradientStart: TailwindColor
     gradientEnd: TailwindColor
 }
 
-interface ApartmentApplicationTheme {
+export interface ApartmentApplicationTheme {
+    themeName: string
     background: Gradient
     filledElements: {
         normal: Gradient
@@ -40,12 +40,3 @@ interface ApartmentApplicationTheme {
         checkmarkFill: TailwindColor
     }
 }
-
-const dark: ApartmentApplicationTheme = {
-    background: {
-        gradientStart: ""
-    }
-}
-
-const ThemeContext = createContext<ApartmentApplicationTheme>(dark)
-
