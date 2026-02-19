@@ -1,108 +1,55 @@
-import type { ApartmentApplicationTheme } from "./ApartmentApplicationTheme";
+import type { TailwindColor } from "./TailwindColor"
 
-const dark: ApartmentApplicationTheme = {
+function cssVar(color: `--color-${TailwindColor}`): string {
+  return `var(${color})`
+}
+
+export interface ApartmentApplicationTheme {
+  themeName: string
+  vars: Record<string, string>
+}
+
+export const Themes: ApartmentApplicationTheme[] = [
+  {
     themeName: "dark",
-    background: {
-        gradientStart: "slate-950",
-        gradientEnd: "slate-700"
-    },
-    filledElements: {
-        normal: {
-            gradientStart: "yellow-950",
-            gradientEnd: "yellow-800"
-        },
-        hover: {
-            gradientStart: "yellow-800",
-            gradientEnd: "yellow-600"
-        }
-    },
-    buttons: {
-        regular: {
-            border: "yellow-800",
-            hoverFill: {
-                gradientStart: "yellow-800",
-                gradientEnd: "yellow-600"
-            }
-        },
-        destructive: {
-            border: "red-800",
-            hoverFill: {
-                gradientStart: "red-800",
-                gradientEnd: "red-600"
-            }
-        }
-    },
-    text: {
-        title: "yellow-500",
-        generic: "white",
-        formLabel: "yellow-600"
-    },
-    form: {
-        field: {
-            border: "yellow-600",
-            background: {
-                normal: "yellow-950",
-                hover: "yellow-950",
-                focus: "yellow-950",
-                unavailableOpacity: 20
-            }
-        },
-        checkmarkFill: "yellow-600"
+    vars: {
+      "--bg-start":                         cssVar("--color-taupe-900"),
+      "--bg-end":                           cssVar("--color-taupe-800"),
+      "--text":                             cssVar("--color-white"),
+      "--title":                            cssVar("--color-yellow-500"),
+      "--form-label":                       cssVar("--color-yellow-600"),
+      "--accent-start":                     cssVar("--color-yellow-950"),
+      "--accent-end":                       cssVar("--color-yellow-800"),
+      "--accent-hover-start":               cssVar("--color-yellow-800"),
+      "--accent-hover-end":                 cssVar("--color-yellow-600"),
+      "--border-regular":                   cssVar("--color-yellow-800"),
+      "--accent-hover-destructive-start":   cssVar("--color-red-800"),
+      "--accent-hover-destructive-end":     cssVar("--color-red-600"),
+      "--border-destructive":               cssVar("--color-red-800"),
+      "--field-border":                     cssVar("--color-yellow-600"),
+      "--field-bg":                         cssVar("--color-yellow-950"),
+      "--checkmark":                        cssVar("--color-yellow-600"),
     }
-}
-
-const light: ApartmentApplicationTheme = {
+  },
+  {
     themeName: "light",
-    background: {
-        gradientStart: "slate-100",
-        gradientEnd: "slate-400"
-    },
-    filledElements: {
-        normal: {
-            gradientStart: "yellow-950",
-            gradientEnd: "yellow-800"
-        },
-        hover: {
-            gradientStart: "yellow-800",
-            gradientEnd: "yellow-600"
-        }
-    },
-    buttons: {
-        regular: {
-            border: "yellow-800",
-            hoverFill: {
-                gradientStart: "yellow-800",
-                gradientEnd: "yellow-600"
-            }
-        },
-        destructive: {
-            border: "red-800",
-            hoverFill: {
-                gradientStart: "red-800",
-                gradientEnd: "red-600"
-            }
-        }
-    },
-    text: {
-        title: "yellow-500",
-        generic: "black",
-        formLabel: "yellow-600"
-    },
-    form: {
-        field: {
-            border: "yellow-600",
-            background: {
-                normal: "yellow-950",
-                hover: "yellow-950",
-                focus: "yellow-950",
-                unavailableOpacity: 20
-            }
-        },
-        checkmarkFill: "yellow-600"
+    vars: {
+      "--bg-start":                         cssVar("--color-taupe-200"),
+      "--bg-end":                           cssVar("--color-taupe-300"),
+      "--text":                             cssVar("--color-black"),
+      "--title":                            cssVar("--color-yellow-500"),
+      "--form-label":                       cssVar("--color-yellow-600"),
+      "--accent-start":                     cssVar("--color-yellow-950"),
+      "--accent-end":                       cssVar("--color-yellow-800"),
+      "--accent-hover-start":               cssVar("--color-yellow-800"),
+      "--accent-hover-end":                 cssVar("--color-yellow-600"),
+      "--border-regular":                   cssVar("--color-yellow-800"),
+      "--accent-hover-destructive-start":   cssVar("--color-red-800"),
+      "--accent-hover-destructive-end":     cssVar("--color-red-600"),
+      "--border-destructive":               cssVar("--color-red-800"),
+      "--field-border":                     cssVar("--color-yellow-600"),
+      "--field-bg":                         cssVar("--color-yellow-950"),
+      "--checkmark":                        cssVar("--color-yellow-600"),
     }
-} 
-
-export const Themes = {
-    dark,
-    light
-}
+  }
+]

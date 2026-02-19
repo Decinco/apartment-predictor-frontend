@@ -1,6 +1,5 @@
 import { useState } from "react"
-import type { ApartmentApplicationTheme } from "../data/ApartmentApplicationTheme"
-import { Themes } from "../data/Themes"
+import { Themes, type ApartmentApplicationTheme } from "../data/Themes"
 
 export interface UseThemeHook {
     currentTheme: ApartmentApplicationTheme
@@ -9,20 +8,18 @@ export interface UseThemeHook {
 }
 
 export function useTheme(): UseThemeHook {
-    const [ currentTheme, setCurrentTheme ] = useState<ApartmentApplicationTheme>(Themes.dark)
-
-    const themes = Object.values(Themes) // Turns into list for easier filtering
+    const [ currentTheme, setCurrentTheme ] = useState<ApartmentApplicationTheme>(Themes[0])
     
     const changeTheme = (themeName: string) => {
-        const newTheme = themes.find((theme) => {
+        const newTheme = Themes.find((theme) => {
             theme.themeName === themeName
         })
         newTheme && setCurrentTheme(newTheme)
     }
 
     const nextTheme = () => {
-        const currentThemeId = themes.findIndex((theme) => theme.themeName === currentTheme.themeName)
-        const newTheme = currentThemeId < themes.length - 1 ? themes[currentThemeId + 1] : themes[0]
+        const currentThemeId = Themes.findIndex((theme) => theme.themeName === currentTheme.themeName)
+        const newTheme = currentThemeId < Themes.length - 1 ? Themes[currentThemeId + 1] : Themes[0]
 
         console.log(newTheme)
 

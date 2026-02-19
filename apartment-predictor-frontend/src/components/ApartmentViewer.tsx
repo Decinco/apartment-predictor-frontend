@@ -5,8 +5,7 @@ import ApartmentDetail from "./ApartmentDetail"
 import ApartmentForm from "./ApartmentForm"
 import { useState } from "react"
 import ThemeChanger from "./ui/ThemeChanger"
-import { useThemeContext } from "../context/ApplicationThemeProvider"
-import { tailwindColorToCssValue } from "../utils/utils"
+import MainContainer from "./ui/MainContainer"
 
 type ViewMode = "list" | "view" | "edit"
 
@@ -14,8 +13,6 @@ export default function ApartmentViewer() {
     const apartments = useApartments()
     const [viewMode, setViewMode] = useState<ViewMode>("list")
     const [selectedApartmentId, setSelectedApartmentId] = useState<string | null>(null)
-
-    const theme = useThemeContext().currentTheme
 
     const handleSubmit = async (updatedApartment: Apartment) => {
         console.log(updatedApartment)
@@ -98,19 +95,10 @@ export default function ApartmentViewer() {
         }
     }
 
-    const backgroundStart = tailwindColorToCssValue(theme.background.gradientStart)
-    const backgroundEnd = tailwindColorToCssValue(theme.background.gradientEnd)
-    const textColorGeneric = tailwindColorToCssValue(theme.text.generic)
-
     return (
-        <div className="min-h-screen"
-            style={{
-                backgroundImage: `linear-gradient(to bottom right, ${backgroundStart}, ${backgroundEnd})`,
-                color: textColorGeneric
-            }}
-        >
-            <ThemeChanger></ThemeChanger>
+        <MainContainer>
+            <ThemeChanger/>
             {getInterfaceContent()}
-        </div>
+        </MainContainer>
     )
 }
