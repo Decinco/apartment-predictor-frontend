@@ -1,4 +1,4 @@
-import { createContext, type ReactNode } from "react";
+import { createContext, useContext, type ReactNode } from "react";
 import { useTheme, type UseThemeHook } from "../hooks/useTheme";
 
 
@@ -12,6 +12,17 @@ export default function ApplicationThemeProvider({children}: {children: ReactNod
             {children}
         </ThemeContext>
     )
+}
+
+export function useThemeContext() {
+    const context = useContext(ThemeContext)
+
+    if (!context) {
+        console.error("No theme data! Using default")
+        return useTheme()
+    }
+
+    return context
 }
 
 
