@@ -6,7 +6,7 @@ export default function MainContainer({children}: {children: ReactNode | ReactNo
 
 
     return (
-        <div className="min-h-screen bg-linear-to-br from-(--bg-start) to-(--bg-end) text-(--text)"
+        <div className="p-3 min-h-screen bg-linear-to-br from-(--bg-start) to-(--bg-end) text-(--text)"
             style={theme.vars as React.CSSProperties}
         >
             {children}
