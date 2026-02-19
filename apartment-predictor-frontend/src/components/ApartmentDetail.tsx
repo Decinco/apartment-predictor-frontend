@@ -1,4 +1,4 @@
-import { IconAirConditioning, IconBath, IconBed, IconHotelService, IconParking, IconSofa, IconSquareAsterisk, IconStack, IconStairsDown, IconTemperaturePlus } from "@tabler/icons-react"
+import { IconAirConditioning, IconBath, IconBed, IconHotelService, IconParking, IconSofa, IconSquareAsterisk, IconStack, IconStairsDown, IconTemperaturePlus, type Icon } from "@tabler/icons-react"
 import type { Apartment } from "../data/Apartment"
 import { separateNumbers } from "../utils/utils"
 
@@ -6,9 +6,9 @@ import { separateNumbers } from "../utils/utils"
 
 export default function ApartmentDetail({ apartment, onStartEdit, onReturn, onDelete }: { apartment: Apartment, onStartEdit: () => void, onReturn: () => void, onDelete: (id: string, name: string) => void }) {
     return (
-        <div className="flex flex-col items-center text-white antialiased self-center pb-5">
+        <div className="flex flex-col items-center antialiased self-center pb-5">
             <div className="px-5">
-                <h3 className="text-5xl font-bold italic text-yellow-500 pt-5">{apartment.name}</h3>
+                <h3 className="text-5xl font-bold italic pt-5">{apartment.name}</h3>
                 <p className="text-3xl font-medium text-left self-baseline pb-5">{separateNumbers(apartment.price)} €</p>
                 <div className="flex flex-col gap-3 pb-5">
                     <div className="flex flex-row gap-3 items-center">
@@ -88,4 +88,13 @@ export default function ApartmentDetail({ apartment, onStartEdit, onReturn, onDe
             </div>
         </div>
     )
+}
+
+function FieldStatistics({field, fieldDisplay, icon}: {field: any, fieldDisplay?: string, icon: Icon}) {
+    <div className="flex flex-row gap-3 items-center">
+        <div className="bg-linear-to-br from-(--accent-start) to-(--accent-end) rounded-xl">
+            {icon}
+        </div>
+        {typeof field == "boolean" ? <span className="text-xl">{field ? <span className="text-(--title)">Has {fieldDisplay ?? field}</span> : <span className="font-bold">Doesn't have {fieldDisplay ?? field}</span>}</span> : <span className="text-xl"><span className="text-(--title) font-bold">{fieldDisplay ?? field}: </span>{field}</span>}
+    </div>
 }
