@@ -3,8 +3,8 @@ import type { ApartmentApplicationTheme } from "./ApartmentApplicationTheme";
 const dark: ApartmentApplicationTheme = {
     themeName: "dark",
     background: {
-        gradientStart: "black",
-        gradientEnd: "gray-800"
+        gradientStart: "slate-950",
+        gradientEnd: "slate-700"
     },
     filledElements: {
         normal: {
@@ -54,8 +54,8 @@ const dark: ApartmentApplicationTheme = {
 const light: ApartmentApplicationTheme = {
     themeName: "light",
     background: {
-        gradientStart: "white",
-        gradientEnd: "gray-50"
+        gradientStart: "slate-100",
+        gradientEnd: "slate-400"
     },
     filledElements: {
         normal: {

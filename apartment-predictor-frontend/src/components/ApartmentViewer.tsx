@@ -5,6 +5,7 @@ import ApartmentDetail from "./ApartmentDetail"
 import ApartmentForm from "./ApartmentForm"
 import { useState } from "react"
 import ThemeChanger from "./ui/ThemeChanger"
+import { useThemeContext } from "../context/ApplicationThemeProvider"
 
 type ViewMode = "list" | "view" | "edit"
 
@@ -12,6 +13,8 @@ export default function ApartmentViewer() {
     const apartments = useApartments()
     const [viewMode, setViewMode] = useState<ViewMode>("list")
     const [selectedApartmentId, setSelectedApartmentId] = useState<string | null>(null)
+
+    const theme = useThemeContext().currentTheme
 
     const handleSubmit = async (updatedApartment: Apartment) => {
         console.log(updatedApartment)
@@ -95,9 +98,9 @@ export default function ApartmentViewer() {
     }
 
     return (
-        <>
+        <div className={`min-h-screen bg-linear-to-br ${"from-" + theme.background.gradientStart} ${"to-" + theme.background.gradientEnd} ${"text-" + theme.text.generic}`}>
             <ThemeChanger></ThemeChanger>
             {getInterfaceContent()}
-        </>
+        </div>
     )
 }
