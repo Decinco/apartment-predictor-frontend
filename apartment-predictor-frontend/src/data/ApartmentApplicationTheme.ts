@@ -1,6 +1,6 @@
 import type { TailwindColor } from "./TailwindColor"
 
-type Gradient = {
+export type Gradient = {
     gradientStart: TailwindColor
     gradientEnd: TailwindColor
 }

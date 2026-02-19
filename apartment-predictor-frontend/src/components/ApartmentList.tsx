@@ -1,6 +1,6 @@
 import { IconAirConditioning, IconBath, IconBed, IconHotelService, IconParking, IconSofa, IconSquareAsterisk, IconStack, IconStairsDown, IconTemperaturePlus } from "@tabler/icons-react"
 import type { Apartment } from "../data/Apartment"
-import { separateNumbers } from "../utils"
+import { separateNumbers } from "../utils/utils"
 
 export default function ApartmentList({ apartments, onView, onCreate }: { apartments: Apartment[],  onView: (id?: string) => void, onCreate: () => void }) {
     return (

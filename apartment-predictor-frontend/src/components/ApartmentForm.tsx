@@ -1,6 +1,6 @@
 import { useState } from "react"
 import type { Apartment } from "../data/Apartment"
-import { typedKeys } from "../utils"
+import { typedKeys } from "../utils/utils"
 import TextField from "./fields/TextField"
 import CheckboxField from "./fields/CheckboxField"
 import SelectField from "./fields/SelectField"

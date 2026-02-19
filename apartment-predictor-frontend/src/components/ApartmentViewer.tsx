@@ -6,6 +6,7 @@ import ApartmentForm from "./ApartmentForm"
 import { useState } from "react"
 import ThemeChanger from "./ui/ThemeChanger"
 import { useThemeContext } from "../context/ApplicationThemeProvider"
+import { tailwindColorToCssValue } from "../utils/utils"
 
 type ViewMode = "list" | "view" | "edit"
 
@@ -97,8 +98,17 @@ export default function ApartmentViewer() {
         }
     }
 
+    const backgroundStart = tailwindColorToCssValue(theme.background.gradientStart)
+    const backgroundEnd = tailwindColorToCssValue(theme.background.gradientEnd)
+    const textColorGeneric = tailwindColorToCssValue(theme.text.generic)
+
     return (
-        <div className={`min-h-screen bg-linear-to-br ${"from-" + theme.background.gradientStart} ${"to-" + theme.background.gradientEnd} ${"text-" + theme.text.generic}`}>
+        <div className="min-h-screen"
+            style={{
+                backgroundImage: `linear-gradient(to bottom right, ${backgroundStart}, ${backgroundEnd})`,
+                color: textColorGeneric
+            }}
+        >
             <ThemeChanger></ThemeChanger>
             {getInterfaceContent()}
         </div>
