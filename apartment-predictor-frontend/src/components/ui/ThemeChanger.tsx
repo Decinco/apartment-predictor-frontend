@@ -6,7 +6,7 @@ export default function ThemeChanger() {
 
     return (
         <div className="">
-            <div onClick={() => themeManager.nextTheme()} className="hover:cursor-pointer bg-linear-to-br p-3 size-min from-(--accent-start) to-(--accent-end) hover:from-(--accent-hover-start) hover:to-(--accent-hover-end) rounded-xl">
+            <div onClick={() => themeManager.nextTheme()} className="shadow-lg shadow-(color:--text)/15 hover:shadow-md hover:cursor-pointer bg-linear-to-br p-3 size-min from-(--accent-start) to-(--accent-end) hover:from-(--accent-hover-start) hover:to-(--accent-hover-end) rounded-xl">
                 {themeManager.currentTheme.themeName === "light" ? <IconMoon/> : <IconSun/>}
             </div>
         </div>

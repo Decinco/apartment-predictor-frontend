@@ -4,7 +4,7 @@ import { separateNumbers } from "../../utils/utils";
 
 export default function ApartmentListItem({ apartment, onView }: { apartment: Apartment, onView: (id?: string) => void }) {
     return (
-        <div className="w-sm gap-2 bg-linear-to-br from-(--accent-start) to-(--accent-end) hover:from-(--accent-hover-start) hover:to-(--accent-hover-end) hover:cursor-pointer rounded-lg p-2" onClick={() => onView(apartment.id)}>
+        <div className="shadow-lg shadow-(color:--text)/15 hover:shadow-md w-sm gap-2 bg-linear-to-br from-(--accent-start) to-(--accent-end) hover:from-(--accent-hover-start) hover:to-(--accent-hover-end) hover:cursor-pointer rounded-lg p-2" onClick={() => onView(apartment.id)}>
             <div className="flex flex-row border-b items-end">
                 <div className="basis-3/4 truncate">
                     <strong className="font-bold text-2xl">{apartment.name}</strong>
