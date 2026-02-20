@@ -5,9 +5,9 @@ import { IconButton } from "./ui/Button"
 
 export default function ApartmentList({ apartments, onView, onCreate }: { apartments: Apartment[],  onView: (id?: string) => void, onCreate: () => void }) {
     return (
-        <div className="m-2 rounded-xl bg-(--text)/10 px-3 flex flex-col items-center antialiased pt-2 mx-7">
-            <div className="flex flex-row w-full items-center justify-between mb-2">
-                <div>
+        <div className="m-2 rounded-xl bg-(--text)/10 px-3 flex flex-col items-center antialiased pt-2 pb-3 mx-7">
+            <div className="flex flex-col sm:flex-row w-full items-center gap-1 sm:items-center sm:justify-between mb-2">
+                <div className="flex flex-col self-baseline">
                     <h2 className="text-5xl font-bold bg-linear-to-r text-(--title) bg-clip-text pb-1">
                         Apartments
                     </h2>

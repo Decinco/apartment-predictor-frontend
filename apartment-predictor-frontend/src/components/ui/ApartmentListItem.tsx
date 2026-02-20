@@ -6,10 +6,10 @@ export default function ApartmentListItem({ apartment, onView }: { apartment: Ap
     return (
         <div className="w-full shadow-lg shadow-(color:--text)/15 hover:shadow-md gap-2 bg-linear-to-br from-(--accent-start) to-(--accent-end) hover:from-(--accent-hover-start) hover:to-(--accent-hover-end) hover:cursor-pointer rounded-lg p-2" onClick={() => onView(apartment.id)}>
             <div className="flex flex-row border-b items-end">
-                <div className="basis-3/4 truncate">
+                <div className="basis-4/6 truncate">
                     <strong className="font-bold text-2xl">{apartment.name}</strong>
                 </div>
-                <div className="basis-1/4 items-end text-right">
+                <div className="basis-2/6 items-end text-right">
                     <p className="font-mono italic text-sm">{separateNumbers(apartment.price)} €</p>
                 </div>
             </div>
@@ -24,19 +24,19 @@ export default function ApartmentListItem({ apartment, onView }: { apartment: Ap
                         <div className="rounded-md bg-(--text)/30 p-1 mr-2">
                             <IconSquareAsterisk />
                         </div>
-                        <span>{apartment.area} m² of space</span>
+                        <span>{apartment.area} m²</span>
                     </div>
                     <div className="flex flex-row gap-1 items-center">
                         <div className="rounded-md bg-(--text)/30 p-1 mr-2">
                             <IconBed />
                         </div>
-                        <span>{apartment.bedrooms} {apartment.bedrooms == 1 ? "bedroom" : "bedrooms"}</span>
+                        <span>{apartment.bedrooms} {apartment.bedrooms == 1 ? "bed" : "beds"}</span>
                     </div>
                     <div className="flex flex-row gap-1 items-center">
                         <div className="rounded-md bg-(--text)/30 p-1 mr-2">
                             <IconBath />
                         </div>
-                        <span>{apartment.bathrooms} {apartment.bathrooms == 1 ? "bathroom" : "bathrooms"}</span>
+                        <span>{apartment.bathrooms} {apartment.bathrooms == 1 ? "bath" : "baths"}</span>
                     </div>
                 </div>
                 <div className="bg-(--text)/30 rounded-md py-1 flex flex-row flex-wrap gap-3 place-items-center items-center place-content-center text-center">
