@@ -97,7 +97,6 @@ export default function ApartmentViewer() {
 
     return (
         <MainContainer>
-            <ThemeChanger/>
             {getInterfaceContent()}
         </MainContainer>
     )
