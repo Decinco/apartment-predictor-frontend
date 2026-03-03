@@ -1,7 +1,7 @@
 import axios from "axios"
 import type { Apartment } from "../data/Apartment"
 
-const API_BASE_URL = "http://decin.co:5053/aptPredictor/v1"
+const API_BASE_URL = "https://apiapartmentpredictor.decin.co/aptPredictor/v1"
 
 export async function fetchApartments(): Promise<Apartment[]> {
     try {
