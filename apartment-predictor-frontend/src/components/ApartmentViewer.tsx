@@ -4,7 +4,6 @@ import ApartmentList from "./ApartmentList"
 import ApartmentDetail from "./ApartmentDetail"
 import ApartmentForm from "./ApartmentForm"
 import { useState } from "react"
-import ThemeChanger from "./ui/ThemeChanger"
 import MainContainer from "./ui/MainContainer"
 
 type ViewMode = "list" | "view" | "edit"

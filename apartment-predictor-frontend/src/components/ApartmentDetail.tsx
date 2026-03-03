@@ -16,12 +16,12 @@ export default function ApartmentDetail({ apartment, onStartEdit, onReturn, onDe
                     <FieldStatistics field={apartment.area} fieldDisplay="Area" icon={IconSquareAsterisk} />
                     <FieldStatistics field={apartment.bedrooms} fieldDisplay="Bedrooms" icon={IconBed} />
                     <FieldStatistics field={apartment.bathrooms} fieldDisplay="Bathrooms" icon={IconBath} />
-                    <FieldStatistics field={apartment.airconditioning} fieldDisplay="air conditioning" icon={IconAirConditioning} />
+                    <FieldStatistics field={apartment.airConditioning} fieldDisplay="air conditioning" icon={IconAirConditioning} />
                     <FieldStatistics field={apartment.basement} fieldDisplay="a basement" icon={IconStairsDown} />
                     <FieldStatistics field={apartment.guestroom} fieldDisplay="a guest room" icon={IconHotelService} />
-                    <FieldStatistics field={apartment.hotwaterheating} fieldDisplay="water heating" icon={IconTemperaturePlus} />
+                    <FieldStatistics field={apartment.waterHeating} fieldDisplay="water heating" icon={IconTemperaturePlus} />
                     <FieldStatistics field={apartment.parking} fieldDisplay="parking" icon={IconParking} />
-                    <FieldStatistics field={apartment.furnishingstatus} fieldDisplay="Furnishing Status" icon={IconSofa} />
+                    <FieldStatistics field={apartment.furnishingStatus} fieldDisplay="Furnishing Status" icon={IconSofa} />
                 </div>
             </div>
             <div>

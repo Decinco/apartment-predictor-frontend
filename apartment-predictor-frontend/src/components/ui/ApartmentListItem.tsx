@@ -20,13 +20,13 @@ export default function ApartmentListItem({ apartment, onView }: { apartment: Ap
                     <ApartmentListFeature field={apartment.bathrooms} icon={IconBath} text="bath" textPlural="baths" />
                 </div>
                 <div className="bg-(--text)/15 rounded-md py-1 flex flex-row flex-wrap gap-3 place-items-center items-center place-content-center text-center">
-                    {apartment.airconditioning && <IconAirConditioning></IconAirConditioning>}
+                    {apartment.airConditioning && <IconAirConditioning></IconAirConditioning>}
                     {apartment.basement && <IconStairsDown></IconStairsDown>}
                     {apartment.guestroom && <IconHotelService/>}
-                    {apartment.hotwaterheating && <IconTemperaturePlus/>}
+                    {apartment.waterHeating && <IconTemperaturePlus/>}
                     {apartment.parking && <IconParking/>}
-                    {apartment.furnishingstatus != "Unfurnished" && <IconSofa/>}
-                    {apartment.furnishingstatus === "Unfurnished" && !apartment.airconditioning && !apartment.basement && !apartment.guestroom && !apartment.hotwaterheating && !apartment.parking && <p className="text-sm font-bold italic">No additional features</p>}
+                    {apartment.furnishingStatus != "Unfurnished" && <IconSofa/>}
+                    {apartment.furnishingStatus === "Unfurnished" && !apartment.airConditioning && !apartment.basement && !apartment.guestroom && !apartment.waterHeating && !apartment.parking && <p className="text-sm font-bold italic">No additional features</p>}
                 </div>
         </div>
     )

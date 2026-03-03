@@ -14,7 +14,7 @@ export function isFurnishingStatus(value: unknown): value is FurnishingStatusTyp
 }
 
 // Default apartment object for editing
-export const defaultApartment: Apartment = {id: String(Math.floor(Math.random() * 99999)), name: '', area: 0, bedrooms: 0, bathrooms: 0, stories: 0, guestroom: false, basement: false, hotwaterheating: false, airconditioning: false, parking: false, furnishingstatus: FurnishingStatus.UNFURNISHED, price: 0 }
+export const defaultApartment: Apartment = {id: String(Math.floor(Math.random() * 99999)), name: '', area: 0, bedrooms: 0, bathrooms: 0, stories: 0, guestroom: false, basement: false, waterHeating: false, airConditioning: false, parking: false, furnishingStatus: FurnishingStatus.UNFURNISHED, price: 0 }
 
 export interface Apartment {
     id: string
@@ -26,8 +26,8 @@ export interface Apartment {
     stories: number
     guestroom?: boolean
     basement?: boolean
-    hotwaterheating?: boolean
-    airconditioning?: boolean
+    waterHeating?: boolean
+    airConditioning?: boolean
     parking?: boolean
-    furnishingstatus: FurnishingStatusType
+    furnishingStatus: FurnishingStatusType
 }
