@@ -1,9 +1,12 @@
 import ApartmentViewer from './components/ApartmentViewer'
+import ApplicationThemeProvider from './context/ApplicationThemeProvider'
 
 function App() {
   return (
     <>
-        <ApartmentViewer />
+        <ApplicationThemeProvider>
+          <ApartmentViewer />
+        </ApplicationThemeProvider>
     </>
   )
 }
