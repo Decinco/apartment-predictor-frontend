@@ -1,6 +1,6 @@
 import { IconHomePlus } from "@tabler/icons-react"
 import type { Apartment } from "../data/Apartment"
-import ApartmentListItem from "./ui/ApartmentListItem"
+import ApartmentCard from "./ui/ApartmentListItem"
 import { IconButton } from "./ui/Button"
 
 export default function ApartmentList({ apartments, onView, onCreate }: { apartments: Apartment[],  onView: (id?: string) => void, onCreate: () => void }) {
@@ -18,7 +18,7 @@ export default function ApartmentList({ apartments, onView, onCreate }: { apartm
             <div className={apartments.length > 0 ? "w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 y-4 justify-center" : "justify-center"}>
                 {apartments.length == 0 && <p className="font-bold italic">No apartments found</p>}
                 {apartments.map(apartment => (
-                    <ApartmentListItem key={apartment.id} apartment={apartment} onView={onView} />
+                    <ApartmentCard key={apartment.id} apartment={apartment} onView={onView} />
                 ))}
             </div>
         </div>
