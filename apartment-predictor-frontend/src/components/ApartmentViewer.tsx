@@ -1,6 +1,6 @@
 import { defaultApartment, type Apartment } from "../data/Apartment"
 import { useApartments } from "../hooks/useApartments"
-import ApartmentList, { sortTypes, type SortTypes } from "./ApartmentList"
+import ApartmentList from "./ApartmentList"
 import ApartmentDetail from "./ApartmentDetail"
 import ApartmentForm from "./ApartmentForm"
 import { useState } from "react"
@@ -52,30 +52,6 @@ export default function ApartmentViewer() {
         setSelectedApartmentId(null)
     }
 
-    const handleSort = (sortType: SortTypes) => {
-        switch (sortType) {
-            case "atoz": apartments.setApartments(apartments.list?.sort((a, b) => a.name.localeCompare(b.name)) ?? null); return;
-            case "ztoa": apartments.setApartments(apartments.list?.sort((a, b) => -1 * a.name.localeCompare(b.name)) ?? null); return;
-            case "cheap": apartments.setApartments(apartments.list?.sort((a, b) => b.price - a.price) ?? null); return;
-            case "expensive": apartments.setApartments(apartments.list?.sort((a, b) => a.price - b.price) ?? null); return;
-            case "featureful": apartments.setApartments(apartments.list?.sort((a, b) => countApartmentFeatures(a) - countApartmentFeatures(b)) ?? null); return;
-            case "featureless": apartments.setApartments(apartments.list?.sort((a, b) => countApartmentFeatures(b) - countApartmentFeatures(a)) ?? null); return;
-        }
-    }
-
-    function countApartmentFeatures (apartment: Apartment): number {
-        let features = 0
-
-        features += (apartment.basement ? 1 : 0)
-        features += (apartment.airConditioning ? 1 : 0)
-        features += (apartment.guestroom ? 1 : 0)
-        features += (apartment.parking ? 1 : 0)
-        features += (apartment.waterHeating ? 1 : 0)
-        features += (apartment.furnishingStatus != "Unfurnished" ? 1 : 0)
-
-        return features
-    }
-
     function getApartmentFromId(id: string | null) {
         return apartments.list?.find(apartment => apartment.id === id)
     }
@@ -102,7 +78,7 @@ export default function ApartmentViewer() {
 
         switch (viewMode) {
             case "list":
-                return <ApartmentList apartments={apartments.list} onView={handleView} onCreate={handleCreation} onSort={handleSort} />
+                return <ApartmentList apartments={apartments.list} onView={handleView} onCreate={handleCreation} />
             case "view":
                 apartment = getApartmentFromId(selectedApartmentId)
                 if (!apartment) return <p>Apartment not found</p>
