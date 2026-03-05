@@ -13,6 +13,7 @@ export default function ApartmentListItem({ apartment, onView }: { apartment: Ap
                     <p className="font-mono italic text-sm">{separateNumbers(apartment.price)} €</p>
                 </div>
             </div>
+                {apartment.location}
                 <div className="grid grid-cols-2 py-4 gap-y-4">
                     <ApartmentListFeature field={apartment.stories} icon={IconStack} text="story" textPlural="stories" />
                     <ApartmentListFeature field={apartment.area} icon={IconSquareAsterisk} text="m2"/>

@@ -1,3 +1,5 @@
+import type { Review } from "./Review"
+
 export const FurnishingStatus = {
     UNFURNISHED: 'Unfurnished',
     PARTIALLY_FURNISHED: 'Partially Furnished',
@@ -14,11 +16,13 @@ export function isFurnishingStatus(value: unknown): value is FurnishingStatusTyp
 }
 
 // Default apartment object for editing
-export const defaultApartment: Apartment = {id: String(Math.floor(Math.random() * 99999)), name: '', area: 0, bedrooms: 0, bathrooms: 0, stories: 0, guestroom: false, basement: false, waterHeating: false, airConditioning: false, parking: false, furnishingStatus: FurnishingStatus.UNFURNISHED, price: 0 }
+export const defaultApartment: Apartment = {id: String(Math.floor(Math.random() * 99999)), name: '', description:'', location: '', area: 0, bedrooms: 0, bathrooms: 0, stories: 0, guestroom: false, basement: false, waterHeating: false, airConditioning: false, parking: false, furnishingStatus: FurnishingStatus.UNFURNISHED, price: 0, reviews:[]}
 
 export interface Apartment {
     id: string
     name: string
+    description: string
+    location: string
     price: number
     area: number
     bedrooms: number
@@ -30,4 +34,5 @@ export interface Apartment {
     airConditioning?: boolean
     parking?: boolean
     furnishingStatus: FurnishingStatusType
+    reviews: Review[]
 }

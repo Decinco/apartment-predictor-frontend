@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
-import { fetchApartments, updateApartment, removeApartment } from "../api/ApartmentAccess"
-import type { Apartment } from "../data/Apartment"
+import { defaultApartment, type Apartment } from "../data/Apartment"
+import { GenericApiAccess } from "../api/GenericApiAccess"
 
 interface UseApartmentsReturn {
     list: Apartment[] | null
@@ -16,11 +16,13 @@ export function useApartments(): UseApartmentsReturn {
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState<string | null>(null)
 
+    const apartmentAccess = new GenericApiAccess<Apartment>("apartments")
+
     const loadApartments = async () => {
         try {
             setLoading(true)
             setError(null)
-            const data = await fetchApartments()
+            const data = await apartmentAccess.fetch()
             setApartments(data)
         } catch (err) {
             setError(err instanceof Error ? err.message : "Failed to load apartments")
@@ -35,7 +37,7 @@ export function useApartments(): UseApartmentsReturn {
 
     const updateApartmentData = async (apartment: Apartment) => {
         try {
-            await updateApartment(apartment)
+            await apartmentAccess.update(apartment)
             // Refresh the list after successful update
             await loadApartments()
         } catch (err) {
@@ -49,9 +51,10 @@ export function useApartments(): UseApartmentsReturn {
         await loadApartments()
     }
 
+
     const deleteApartment = async (id: string) => {
         try {
-            await removeApartment(id)
+            await apartmentAccess.remove(id)
             // Refresh the list after successful update
             await loadApartments()
         } catch (err) {

@@ -1,4 +1,4 @@
-import { IconAirConditioning, IconBath, IconBed, IconHotelService, IconParking, IconSofa, IconSquareAsterisk, IconStack, IconStairsDown, IconTemperaturePlus, type Icon } from "@tabler/icons-react"
+import { IconAirConditioning, IconBath, IconBed, IconHotelService, IconLocation, IconLocationBolt, IconMapPin, IconParking, IconSofa, IconSquareAsterisk, IconStack, IconStairsDown, IconTemperaturePlus, type Icon } from "@tabler/icons-react"
 import type { Apartment } from "../data/Apartment"
 import { separateNumbers } from "../utils/utils"
 import Button from "./ui/Button"
@@ -12,6 +12,8 @@ export default function ApartmentDetail({ apartment, onStartEdit, onReturn, onDe
                 <h3 className="text-5xl text-(--title) font-bold italic pt-5">{apartment.name}</h3>
                 <p className="text-3xl font-medium text-left self-baseline pb-5">{separateNumbers(apartment.price)} €</p>
                 <div className="flex flex-col gap-3 pb-5">
+                    {apartment.description}
+                    <FieldStatistics field={apartment.location} fieldDisplay="Location" icon={IconMapPin} />
                     <FieldStatistics field={apartment.stories} fieldDisplay="Stories" icon={IconStack} />
                     <FieldStatistics field={apartment.area} fieldDisplay="Area" icon={IconSquareAsterisk} />
                     <FieldStatistics field={apartment.bedrooms} fieldDisplay="Bedrooms" icon={IconBed} />
