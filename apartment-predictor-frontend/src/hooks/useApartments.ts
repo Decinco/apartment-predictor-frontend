@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { defaultApartment, type Apartment } from "../data/Apartment"
+import { type Apartment } from "../data/Apartment"
 import { GenericApiAccess } from "../api/GenericApiAccess"
 
 interface UseApartmentsReturn {
@@ -9,6 +9,7 @@ interface UseApartmentsReturn {
     updateApartmentData: (apartment: Apartment) => Promise<void>
     refreshApartments: () => Promise<void>
     deleteApartment: (id: string) => Promise<void>
+    setApartments: React.Dispatch<React.SetStateAction<Apartment[] | null>>
 }
 
 export function useApartments(): UseApartmentsReturn {
@@ -70,6 +71,7 @@ export function useApartments(): UseApartmentsReturn {
         error,
         updateApartmentData,
         refreshApartments,
-        deleteApartment
+        deleteApartment,
+        setApartments
     }
 }
