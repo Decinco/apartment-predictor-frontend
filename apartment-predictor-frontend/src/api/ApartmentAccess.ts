@@ -1,11 +1,11 @@
 import axios from "axios"
 import type { Apartment } from "../data/Apartment"
 
-const API_BASE_URL = "https://apiapartmentpredictor.decin.co/aptPredictor/v1"
+const API_BASE_URL = "https://apiapartmentpredictor.decin.co/aptPredictor/v1/apartments"
 
 export async function fetchApartments(): Promise<Apartment[]> {
     try {
-        const response = await axios.get(`${API_BASE_URL}/apartments`)
+        const response = await axios.get(`${API_BASE_URL}`)
         console.log("Apartments fetched:", response.data)
         return response.data as Apartment[]
     } catch (err) {
@@ -18,7 +18,7 @@ export async function fetchApartments(): Promise<Apartment[]> {
 export async function updateApartment(apartment: Apartment): Promise<Apartment> {
     try {
         const response = await axios.put(
-            `${API_BASE_URL}/apartments/update`, 
+            `${API_BASE_URL}/update`, 
             apartment
         )
         console.log("Apartment updated:", response.data)
@@ -33,7 +33,7 @@ export async function updateApartment(apartment: Apartment): Promise<Apartment> 
 export async function removeApartment(id: string): Promise<void> {
     try {
         const response = await axios.delete(
-            `${API_BASE_URL}/apartments/delete/${id}`
+            `${API_BASE_URL}/delete/${id}`
         )
         console.log("Apartment updated:", response.data)
     } catch (err) {

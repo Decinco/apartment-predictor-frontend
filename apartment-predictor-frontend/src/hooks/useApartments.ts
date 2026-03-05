@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { fetchApartments, updateApartment, removeApartment } from "../api/APIAccess"
+import { fetchApartments, updateApartment, removeApartment } from "../api/ApartmentAccess"
 import type { Apartment } from "../data/Apartment"
 
 interface UseApartmentsReturn {
