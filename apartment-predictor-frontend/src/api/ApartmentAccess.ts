@@ -35,10 +35,10 @@ export async function removeApartment(id: string): Promise<void> {
         const response = await axios.delete(
             `${API_BASE_URL}/delete/${id}`
         )
-        console.log("Apartment updated:", response.data)
+        console.log("Apartment deleted:", response.data)
     } catch (err) {
         const errorMessage = axios.isAxiosError(err) ? err.message : "Unknown error"
-        console.error("Error updating apartment:", errorMessage)
+        console.error("Error deleting apartment:", errorMessage)
         throw new Error(errorMessage)
     }
 }
