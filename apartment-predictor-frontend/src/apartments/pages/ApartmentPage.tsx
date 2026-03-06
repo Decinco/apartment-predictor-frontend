@@ -1,14 +1,14 @@
-import { defaultApartment, type Apartment } from "../data/Apartment"
+import { defaultApartment, type Apartment } from "../model/Apartment"
 import { useApartments } from "../hooks/useApartments"
-import ApartmentList from "./ApartmentList"
-import ApartmentDetail from "./ApartmentDetail"
-import ApartmentForm from "./ApartmentForm"
+import ApartmentList from "./ApartmentListPage"
+import ApartmentDetail from "./ApartmentDetailsPage"
+import ApartmentForm from "./ApartmentFormPage"
 import { useState } from "react"
-import MainContainer from "./ui/MainContainer"
+import MainContainer from "../../shared/components/MainContainer"
 
 type ViewMode = "list" | "view" | "edit"
 
-export default function ApartmentViewer() {
+export default function ApartmentPage() {
     const apartments = useApartments()
     const [viewMode, setViewMode] = useState<ViewMode>("list")
     const [selectedApartmentId, setSelectedApartmentId] = useState<string | null>(null)

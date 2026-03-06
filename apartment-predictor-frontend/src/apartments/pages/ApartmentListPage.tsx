@@ -1,9 +1,9 @@
 import { IconHomePlus } from "@tabler/icons-react"
-import type { Apartment } from "../data/Apartment"
-import ApartmentCard from "./ui/ApartmentListItem"
-import { IconButton } from "./ui/Button"
+import type { Apartment } from "../model/Apartment"
+import ApartmentCard from "../components/ApartmentListItem" 
+import { IconButton } from "../../shared/components/buttons/Button"
 
-export default function ApartmentList({ apartments, onView, onCreate }: { apartments: Apartment[],  onView: (id?: string) => void, onCreate: () => void }) {
+export default function ApartmentListPage({ apartments, onView, onCreate }: { apartments: Apartment[],  onView: (id?: string) => void, onCreate: () => void }) {
     return (
         <div className="mt-2 rounded-xl bg-(--text)/10 px-3 flex flex-col items-center antialiased pt-2 pb-3">
             <div className="flex flex-col sm:flex-row w-full items-center gap-1 sm:items-center sm:justify-between mb-2">

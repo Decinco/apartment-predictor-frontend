@@ -1,6 +1,6 @@
 import type { ReactNode } from "react"
-import { useThemeContext } from "../../context/ApplicationThemeProvider"
-import ThemeChanger from "./ThemeChanger"
+import { useThemeContext } from "../context/ApplicationThemeProvider"
+import ThemeChanger from "./buttons/ThemeChanger"
 
 export default function MainContainer({children}: {children: ReactNode | ReactNode[ ]}) {
     const theme = useThemeContext().currentTheme

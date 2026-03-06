@@ -1,5 +1,5 @@
-import ApartmentViewer from './components/ApartmentViewer'
-import ApplicationThemeProvider from './context/ApplicationThemeProvider'
+import ApartmentViewer from './apartments/pages/ApartmentPage'
+import ApplicationThemeProvider from './shared/context/ApplicationThemeProvider'
 
 function App() {
   return (

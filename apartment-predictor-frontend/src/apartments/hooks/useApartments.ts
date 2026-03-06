@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
-import { defaultApartment, type Apartment } from "../data/Apartment"
-import { GenericApiAccess } from "../api/GenericApiAccess"
+import { GenericApiAccess } from "../../shared/api/GenericApiAccess" 
+import type { Apartment } from "../model/Apartment"
 
 interface UseApartmentsReturn {
     list: Apartment[] | null
