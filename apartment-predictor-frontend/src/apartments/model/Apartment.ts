@@ -1,4 +1,4 @@
-import type { Review } from "../../reviews/data/Review"
+import type { Review } from "../../apartmentreviews/data/Review"
 
 export const FurnishingStatus = {
     UNFURNISHED: 'Unfurnished',
