@@ -48,6 +48,12 @@ If the user instead comes from an apartment's details page, the UI will pre-fill
 
 In both cases, after submitting the form, the user returns to the details page.
 
+### Theming
+
+The application has a light theme, activated by the button in the top-right corner:
+
+![Apartment list in light mode](images/list_bright.png)
+
 ## Responsiveness
 
 This application's UI is responsive to small and medium screens. Here are some screenshots of what the UI looks like:
@@ -88,11 +94,14 @@ export interface Apartment {
 }
 ```
 
-## Issues & Todos
+## Todos
 
-During development, my biggest issue was finding a structure for the program that *made sense*. After realizing that the first structure wasn't gonna cut it, and that some of the features of the application were severely overengineered, I looked for a way to restructure and simplify the program, assisted by AI tools. As the first way I was coding slowed me down, I had to rush the other features, which left the application with some todos.
+The application has some todos related to scalability and new features:
 
-- **More scalable UI Elements**: Currently, the UI's styles and icons are hardcoded, which makes it harder to scale the app.
-- **Reviews**: Apartments can have reviews, that could be shown and edited through the View page. Neither ends have this feature.
-- **UI animations**: The UI could use with some animations.
-- **Fix workflow**: Currently, the GH Pages deployment workflow doesn't execute successfully.
+- **Routing**: Every page will be mapped to a route. Going back in the page will now also mean going back in the browser.
+- **Reviews**: Apartments can have reviews, that will be shown and edited through the View page.
+- **Schools**: Nearby schools will also be shown in the apartments' view page, but will also get their own page as well.
+- **Map**: Maps will be implemented for adding, and viewing apartments.
+- **Better UI**: Sidebar menu for accesing different features, and improved Apartments View Page.
+
+I have made changes on how data is imported to the application, which should help me expand it.
