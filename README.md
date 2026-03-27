@@ -1,4 +1,4 @@
-# Apartment Predictor Technical Documentation
+# Apartment Predictor
 
 [See on GitHub](https://github.com/Decinco/apartment-predictor-frontend/tree/main)
 
