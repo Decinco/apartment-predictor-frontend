@@ -1,28 +1,28 @@
 import { defaultApartment, type Apartment } from "../model/Apartment"
-import { useApartments } from "../hooks/useApartments"
 import ApartmentList from "./ApartmentListPage"
 import ApartmentDetail from "./ApartmentDetailsPage"
 import ApartmentForm from "./ApartmentFormPage"
 import { useState } from "react"
 import MainContainer from "../../shared/components/MainContainer"
+import { useApi } from "../../shared/middleware/useApi"
 
 type ViewMode = "list" | "view" | "edit"
 
 export default function ApartmentPage() {
-    const apartments = useApartments()
+    const apartments = useApi<Apartment>("apartments")
     const [viewMode, setViewMode] = useState<ViewMode>("list")
     const [selectedApartmentId, setSelectedApartmentId] = useState<string | null>(null)
 
     const handleSubmit = async (updatedApartment: Apartment) => {
         console.log(updatedApartment)
-        await apartments.updateApartmentData(updatedApartment)
+        await apartments.update(updatedApartment)
         setViewMode("view")
     }
 
     const handleDeletion = async (deletedApartmentId: string, deletedApartmentName: string) => {
         const confirmation = confirm("Are you sure you want to delete " + deletedApartmentName + "?")
         if (confirmation) {
-            await apartments.deleteApartment(deletedApartmentId)
+            await apartments.remove(deletedApartmentId)
             setViewMode("list")
         }
     }

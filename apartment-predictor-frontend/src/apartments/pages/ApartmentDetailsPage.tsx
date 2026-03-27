@@ -1,4 +1,4 @@
-import { IconAirConditioning, IconBath, IconBed, IconHotelService, IconMapPin, IconParking, IconSofa, IconSquareAsterisk, IconStack, IconStairsDown, IconTemperaturePlus, type Icon } from "@tabler/icons-react"
+import { IconAirConditioning, IconBath, IconBed, IconHotelService, IconMapPin, IconParking, IconSofa, IconSquareAsterisk, IconStack, IconStairsDown, IconTemperaturePlus } from "@tabler/icons-react"
 import type { Apartment } from "../model/Apartment"
 import { separateNumbers } from "../../shared/utils/utils"
 import Button from "../../shared/components/buttons/Button"
