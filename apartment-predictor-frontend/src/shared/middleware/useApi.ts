@@ -1,27 +1,30 @@
 import { useState, useEffect } from "react"
-import { fetchApartments, updateApartment, removeApartment } from "../api/APIAccess"
-import type { Apartment } from "../data/Apartment"
+import { GenericApiAccess } from "./GenericApiAccess"
 
-interface UseApartmentsReturn {
-    list: Apartment[] | null
+
+
+interface UseApiReturn<T> {
+    list: T[] | null
     loading: boolean
     error: string | null
-    updateApartmentData: (apartment: Apartment) => Promise<void>
-    refreshApartments: () => Promise<void>
-    deleteApartment: (id: string) => Promise<void>
+    update: (object: T) => Promise<void>
+    refresh: () => Promise<void>
+    remove: (id: string) => Promise<void>
 }
 
-export function useApartments(): UseApartmentsReturn {
-    const [apartments, setApartments] = useState<Apartment[] | null>(null)
+export function useApi<T>(endpointCategory: string): UseApiReturn<T> {
+    const [data, setData] = useState<T[] | null>(null)
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState<string | null>(null)
 
-    const loadApartments = async () => {
+    const access = new GenericApiAccess<T>(endpointCategory)
+
+    const load = async () => {
         try {
             setLoading(true)
             setError(null)
-            const data = await fetchApartments()
-            setApartments(data)
+            const data = await access.fetch()
+            setData(data)
         } catch (err) {
             setError(err instanceof Error ? err.message : "Failed to load apartments")
         } finally {
@@ -30,14 +33,14 @@ export function useApartments(): UseApartmentsReturn {
     }
 
     useEffect(() => {
-        loadApartments()
+        load()
     }, [])
 
-    const updateApartmentData = async (apartment: Apartment) => {
+    const update = async (object: T) => {
         try {
-            await updateApartment(apartment)
+            await access.update(object)
             // Refresh the list after successful update
-            await loadApartments()
+            await load()
         } catch (err) {
             const errorMessage = err instanceof Error ? err.message : "Failed to update apartment"
             setError(errorMessage)
@@ -45,15 +48,16 @@ export function useApartments(): UseApartmentsReturn {
         }
     }
 
-    const refreshApartments = async () => {
-        await loadApartments()
+    const refresh = async () => {
+        await load()
     }
 
-    const deleteApartment = async (id: string) => {
+
+    const remove = async (id: string) => {
         try {
-            await removeApartment(id)
+            await access.remove(id)
             // Refresh the list after successful update
-            await loadApartments()
+            await load()
         } catch (err) {
             const errorMessage = err instanceof Error ? err.message : "Failed to delete apartment"
             setError(errorMessage)
@@ -62,11 +66,11 @@ export function useApartments(): UseApartmentsReturn {
     }
 
     return {
-        list: apartments,
+        list: data,
         loading,
         error,
-        updateApartmentData,
-        refreshApartments,
-        deleteApartment
+        update,
+        refresh,
+        remove
     }
 }

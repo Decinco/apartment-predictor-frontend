@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Themes, type ApartmentApplicationTheme } from "../data/Themes"
+import { Themes, type ApartmentApplicationTheme } from "../model/Themes"
 
 export interface UseThemeHook {
     currentTheme: ApartmentApplicationTheme

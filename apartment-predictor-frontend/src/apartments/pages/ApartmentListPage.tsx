@@ -1,9 +1,9 @@
 import { IconHomePlus } from "@tabler/icons-react"
-import type { Apartment } from "../data/Apartment"
-import ApartmentListItem from "./ui/ApartmentListItem"
-import { IconButton } from "./ui/Button"
+import type { Apartment } from "../model/Apartment"
+import ApartmentCard from "../components/ApartmentListItem" 
+import { IconButton } from "../../shared/components/buttons/Button"
 
-export default function ApartmentList({ apartments, onView, onCreate }: { apartments: Apartment[],  onView: (id?: string) => void, onCreate: () => void }) {
+export default function ApartmentListPage({ apartments, onView, onCreate }: { apartments: Apartment[],  onView: (id?: string) => void, onCreate: () => void }) {
     return (
         <div className="mt-2 rounded-xl bg-(--text)/10 px-3 flex flex-col items-center antialiased pt-2 pb-3">
             <div className="flex flex-col sm:flex-row w-full items-center gap-1 sm:items-center sm:justify-between mb-2">
@@ -18,7 +18,7 @@ export default function ApartmentList({ apartments, onView, onCreate }: { apartm
             <div className={apartments.length > 0 ? "w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 y-4 justify-center" : "justify-center"}>
                 {apartments.length == 0 && <p className="font-bold italic">No apartments found</p>}
                 {apartments.map(apartment => (
-                    <ApartmentListItem key={apartment.id} apartment={apartment} onView={onView} />
+                    <ApartmentCard key={apartment.id} apartment={apartment} onView={onView} />
                 ))}
             </div>
         </div>

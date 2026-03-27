@@ -1,8 +1,8 @@
 import { IconAirConditioning, IconBath, IconBed, IconHotelService, IconParking, IconSofa, IconSquareAsterisk, IconStack, IconStairsDown, IconTemperaturePlus, type Icon } from "@tabler/icons-react";
-import type { Apartment } from "../../data/Apartment";
-import { separateNumbers } from "../../utils/utils";
+import type { Apartment } from "../../apartments/model/Apartment";
+import { separateNumbers } from "../../shared/utils/utils";
 
-export default function ApartmentListItem({ apartment, onView }: { apartment: Apartment, onView: (id?: string) => void }) {
+export default function ApartmentCard({ apartment, onView }: { apartment: Apartment, onView: (id?: string) => void }) {
     return (
         <div className="transition hover:-translate-y-0.5 duration-75 w-full shadow-(color:--text)/15 hover:shadow-md gap-2 bg-linear-to-br from-(--accent-start) to-(--accent-end) hover:from-(--accent-hover-start) hover:to-(--accent-hover-end) hover:cursor-pointer rounded-lg p-2" onClick={() => onView(apartment.id)}>
             <div className="flex flex-row border-b items-end">
@@ -13,6 +13,7 @@ export default function ApartmentListItem({ apartment, onView }: { apartment: Ap
                     <p className="font-mono italic text-sm">{separateNumbers(apartment.price)} €</p>
                 </div>
             </div>
+                <p className="text-xs italic">{apartment.location}</p>
                 <div className="grid grid-cols-2 py-4 gap-y-4">
                     <ApartmentListFeature field={apartment.stories} icon={IconStack} text="story" textPlural="stories" />
                     <ApartmentListFeature field={apartment.area} icon={IconSquareAsterisk} text="m2"/>

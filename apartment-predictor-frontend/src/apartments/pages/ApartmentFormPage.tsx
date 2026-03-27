@@ -1,13 +1,13 @@
 import { useState } from "react"
-import type { Apartment } from "../data/Apartment"
-import { typedKeys } from "../utils/utils"
-import TextField from "./fields/TextField"
-import CheckboxField from "./fields/CheckboxField"
-import SelectField from "./fields/SelectField"
-import { furnishingStatusValues, isFurnishingStatus } from "../data/Apartment"
-import Button from "./ui/Button"
+import type { Apartment } from "../model/Apartment"
+import { typedKeys } from "../../shared/utils/utils"
+import TextField from "../../shared/components/fields/TextField"
+import CheckboxField from "../../shared/components/fields/CheckboxField"
+import SelectField from "../../shared/components/fields/SelectField"
+import { furnishingStatusValues, isFurnishingStatus } from "../model/Apartment"
+import Button from "../../shared/components/buttons/Button"
 
-export default function ApartmentForm({ apartment, onSubmit, onReturn }: { apartment: Apartment, onSubmit: (apartment: Apartment) => Promise<void>, onReturn: (id?: string) => void }) {
+export default function ApartmentFormPage({ apartment, onSubmit, onReturn }: { apartment: Apartment, onSubmit: (apartment: Apartment) => Promise<void>, onReturn: (id?: string) => void }) {
     const [formData, setFormData] = useState<Apartment>(apartment)
     const [isSubmitting, setIsSubmitting] = useState(false)
 
