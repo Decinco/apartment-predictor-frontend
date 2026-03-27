@@ -42,7 +42,7 @@ export default function FormPage<T extends ApiObject>({ object, onSubmit, onRetu
                 {typedKeys(formData).map((field) => (
                     <div className="py-2">
                         <FormField
-                            key={field}
+                            key={String(field)}
                             field={field}
                             apartment={formData}
                             onChange={handleFieldChange}
@@ -79,7 +79,7 @@ function FormField<T>({ field, apartment, onChange }: {
     if (typeof value === "number") {
         return (
             <TextField
-                label={field}
+                label={String(field)}
                 type="number"
                 value={value}
                 onChange={(newValue) => onChange(field, parseFloat(newValue))}
@@ -90,7 +90,7 @@ function FormField<T>({ field, apartment, onChange }: {
     if (typeof value === "string") {
         return (
             <TextField
-                label={field}
+                label={String(field)}
                 type="text"
                 value={value}
                 onChange={(newValue) => onChange(field, newValue)}
@@ -101,7 +101,7 @@ function FormField<T>({ field, apartment, onChange }: {
     if (typeof value === "boolean") {
         return (
             <CheckboxField
-                label={field}
+                label={String(field)}
                 checked={value}
                 onChange={(checked) => onChange(field, checked)}
             />
@@ -113,5 +113,5 @@ function FormField<T>({ field, apartment, onChange }: {
         return null
     }
 
-    return <p>{field}: Unimplemented type</p>
+    return <p>{String(field)}: Unimplemented type</p>
 }
