@@ -1,10 +1,10 @@
 import { defaultApartment, type Apartment } from "../model/Apartment"
-import ApartmentList from "./ApartmentListPage"
-import ApartmentDetail from "./ApartmentDetailsPage"
-import ApartmentForm from "./ApartmentFormPage"
 import { useState } from "react"
 import MainContainer from "../../shared/components/MainContainer"
 import { useApi } from "../../shared/middleware/useApi"
+import FormPage from "../../shared/components/forms/FormPage"
+import ApartmentListPage from "./ApartmentListPage"
+import ApartmentDetailsPage from "./ApartmentDetailsPage"
 
 type ViewMode = "list" | "view" | "edit"
 
@@ -78,17 +78,17 @@ export default function ApartmentPage() {
 
         switch (viewMode) {
             case "list":
-                return <ApartmentList apartments={apartments.list} onView={handleView} onCreate={handleCreation} />
+                return <ApartmentListPage apartments={apartments.list} onView={handleView} onCreate={handleCreation} />
             case "view":
                 apartment = getApartmentFromId(selectedApartmentId)
                 if (!apartment) return <p>Apartment not found</p>
 
-                return <ApartmentDetail apartment={apartment} onStartEdit={handleEdit} onReturn={handleBackToList} onDelete={handleDeletion} />
+                return <ApartmentDetailsPage apartment={apartment} onStartEdit={handleEdit} onReturn={handleBackToList} onDelete={handleDeletion} />
             case "edit":
                 apartment = getApartmentFromId(selectedApartmentId)
                 if (!apartment) apartment = defaultApartment
 
-                return <ApartmentForm apartment={apartment} onSubmit={handleSubmit} onReturn={handleView} />
+                return <FormPage<Apartment> object={apartment} onSubmit={handleSubmit} onReturn={handleView} />
             default:
                 return <p>...what?</p>
         }
