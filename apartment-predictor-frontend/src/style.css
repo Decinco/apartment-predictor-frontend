@@ -1,5 +1,14 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'PlusJakartaSans';
+  src: url('assets/font/PlusJakartaSans-VariableFont_wght.ttf')  format('truetype');
+}
+
+@theme {
+    --font-sans: "PlusJakartaSans", sans-serif;
+}
+
 @layer utilities {
   input[type="number"]::-webkit-inner-spin-button,
   input[type="number"]::-webkit-outer-spin-button {
