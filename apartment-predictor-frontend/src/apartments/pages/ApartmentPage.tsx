@@ -1,6 +1,6 @@
 import { defaultApartment, type Apartment } from "../model/Apartment"
 import { useState } from "react"
-import MainContainer from "../../shared/components/MainContainer"
+import MainContainer from "../../shared/components/containers/MainContainer"
 import { useApi } from "../../shared/middleware/useApi"
 import FormPage from "../../shared/components/forms/FormPage"
 import ApartmentListPage from "./ApartmentListPage"

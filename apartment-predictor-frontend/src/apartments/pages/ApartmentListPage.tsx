@@ -2,26 +2,18 @@ import { IconHomePlus } from "@tabler/icons-react"
 import type { Apartment } from "../model/Apartment"
 import ApartmentCard from "../components/ApartmentListItem" 
 import { IconButton } from "../../shared/components/buttons/Button"
+import ListViewHeaderBar from "../../shared/components/containers/ListViewHeaderBar"
+import ListViewContainer from "../../shared/components/containers/ListViewContainer"
+import ListViewCardGrid from "../../shared/components/containers/ListViewCardGrid"
 
 export default function ApartmentListPage({ apartments, onView, onCreate }: { apartments: Apartment[],  onView: (id?: string) => void, onCreate: () => void }) {
     return (
-        <div className="mt-2 rounded-xl bg-(--text)/10 px-3 flex flex-col items-center antialiased pt-2 pb-3">
-            <div className="flex flex-col sm:flex-row w-full items-center gap-1 sm:items-center sm:justify-between mb-2">
-                <div className="flex flex-col self-baseline">
-                    <h2 className="text-5xl font-bold bg-linear-to-r text-(--title) bg-clip-text pb-1">
-                        Apartments
-                    </h2>
-                    <span> {apartments.length} found</span>
-                </div>
+        <ListViewContainer>
+            <ListViewHeaderBar title={"Apartments"} detail={`${apartments.length} found`}>
                 <IconButton icon={IconHomePlus} size={24} onClick={onCreate}></IconButton>
-            </div>
-            <div className={apartments.length > 0 ? "w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 y-4 justify-center" : "justify-center"}>
-                {apartments.length == 0 && <p className="font-bold italic">No apartments found</p>}
-                {apartments.map(apartment => (
-                    <ApartmentCard key={apartment.id} apartment={apartment} onView={onView} />
-                ))}
-            </div>
-        </div>
+            </ListViewHeaderBar>
+            <ListViewCardGrid card={ApartmentCard} list={apartments} onView={onView}/>
+        </ListViewContainer>
     )
 }
 
