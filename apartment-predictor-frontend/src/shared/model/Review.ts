@@ -1,4 +1,4 @@
-import type { Apartment } from "../../apartments/model/Apartment"
+import type { Apartment } from "./Apartment"
 
 // Default review object for editing. Connects to an apartment automatically.
 export const defaultReview: (apartment: Apartment) => Review = (apartment: Apartment) => { return {

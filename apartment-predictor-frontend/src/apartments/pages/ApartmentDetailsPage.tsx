@@ -1,5 +1,5 @@
 import { IconAirConditioning, IconBath, IconBed, IconHotelService, IconMapPin, IconParking, IconSofa, IconSquareAsterisk, IconStack, IconStairsDown, IconTemperaturePlus } from "@tabler/icons-react"
-import type { Apartment } from "../model/Apartment"
+import type { Apartment } from "../../shared/model/Apartment"
 import { separateNumbers } from "../../shared/utils/utils"
 import Button from "../../shared/components/buttons/Button"
 import ApartmentFieldStatistics from "../components/ApartmentFieldStatistics"

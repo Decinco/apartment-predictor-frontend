@@ -1,5 +1,5 @@
 import { IconHomePlus } from "@tabler/icons-react"
-import type { Apartment } from "../model/Apartment"
+import type { Apartment } from "../../shared/model/Apartment"
 import ApartmentCard from "../components/ApartmentListItem" 
 import { IconButton } from "../../shared/components/buttons/Button"
 import ListViewHeaderBar from "../../shared/components/containers/ListViewHeaderBar"

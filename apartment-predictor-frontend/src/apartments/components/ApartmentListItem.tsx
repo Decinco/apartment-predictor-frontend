@@ -1,5 +1,5 @@
 import { IconAirConditioning, IconBath, IconBed, IconHotelService, IconParking, IconSofa, IconSquareAsterisk, IconStack, IconStairsDown, IconTemperaturePlus, type Icon } from "@tabler/icons-react";
-import type { Apartment } from "../../apartments/model/Apartment";
+import type { Apartment } from "../../shared/model/Apartment";
 import { separateNumbers } from "../../shared/utils/utils";
 
 export default function ApartmentCard({ item, onView }: { item: Apartment, onView: (id?: string) => void }) {

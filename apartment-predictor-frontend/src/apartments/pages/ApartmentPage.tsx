@@ -1,4 +1,4 @@
-import { defaultApartment, type Apartment } from "../model/Apartment"
+import { defaultApartment, type Apartment } from "../../shared/model/Apartment"
 import { useState } from "react"
 import MainContainer from "../../shared/components/containers/MainContainer"
 import { useApi } from "../../shared/middleware/useApi"
